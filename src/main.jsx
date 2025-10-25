@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import IberiaLegendsSite from './Site';
+import Site from './Site.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <IberiaLegendsSite />
-  </React.StrictMode>
+    <Site />
+  </React.StrictMode>,
 );
