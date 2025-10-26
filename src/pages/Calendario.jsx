@@ -1,21 +1,5 @@
 
-import React from 'react'
-import matches from '../data/matches'
-export default function Calendario(){
-  return (
-    <section className="py-8">
-      <h2 className="text-2xl font-bold mb-4 text-[var(--navy)]">Calendario</h2>
-      <div className="space-y-3">
-        {matches.map((m,idx)=>(
-          <div key={idx} className="p-4 bg-white rounded shadow flex items-center justify-between">
-            <div>
-              <div className="font-semibold">{m.home} <span className="text-sm opacity-70">vs</span> {m.away}</div>
-              <div className="text-sm text-gray-600">{m.date}</div>
-            </div>
-            <div className="text-sm"><a href={m.stream} className="underline">Ver stream</a></div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
+import React from 'react';
+import divisions from '../data/divisions';
+import { roundRobin } from '../components/generator';
+function buildMatches(){const all=[];divisions.forEach(div=>{const teams=div.teams.map(t=>t.name);const rounds=roundRobin(teams);let day=new Date();rounds.forEach((r,ri)=>{r.forEach(m=>{all.push({division:div.name,round:ri+1,home:m.home,away:m.away,date:new Date(day).toISOString().slice(0,10)});});day.setDate(day.getDate()+1);});});return all;}export default function Calendario(){const matches=buildMatches();return (<section className='py-8'><h2 className='text-2xl font-bold mb-4 text-[var(--navy)]'>Calendario (generado)</h2><div className='space-y-2'>{matches.map((m,idx)=>(<div key={idx} className='p-3 bg-white rounded shadow flex items-center justify-between'><div><div className='font-semibold'>{m.home} <span className='text-sm opacity-70'>vs</span> {m.away}</div><div className='text-sm text-gray-600'>{m.division} • Jornada {m.round}</div></div><div className='text-sm text-gray-700'>{m.date}</div></div>))}</div></section>);}

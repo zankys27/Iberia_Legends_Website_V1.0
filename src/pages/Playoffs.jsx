@@ -1,0 +1,5 @@
+
+import React from 'react';
+import divisions from '../data/divisions';
+function bracket(teams){const top4=teams.slice(0,4).map(t=>t.name);return [{home:top4[0],away:top4[3],stage:'Semi 1'},{home:top4[1],away:top4[2],stage:'Semi 2'},{home:'Winner S1',away:'Winner S2',stage:'Final'}];}
+export default function Playoffs(){return (<section className='py-8'><h2 className='text-2xl font-bold mb-4 text-[var(--navy)]'>Playoffs</h2>{divisions.map(d=>(<div key={d.name} className='mb-6'><h3 className='font-semibold text-lg'>{d.name}</h3><div className='bg-white rounded shadow p-4 mt-2'>{bracket(d.teams).map((m,i)=>(<div key={i} className='py-2 border-b flex items-center justify-between'><div className='font-medium'>{m.stage}: {m.home} vs {m.away}</div><div className='text-sm text-gray-600'>Pendiente</div></div>))}</div></div>))}</section>);}
