@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{--navy:#0A0E2A;--gold:#FFD166;--white:#ffffff}

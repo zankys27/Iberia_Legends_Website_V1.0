@@ -1,0 +1,24 @@
+
+import React from 'react'
+import mvps from '../data/mvps'
+export default function Mvps(){
+  return (
+    <section className="py-8">
+      <h2 className="text-2xl font-bold mb-4 text-[var(--navy)]">MVPs destacados</h2>
+      <div className="grid md:grid-cols-3 gap-4">
+        {mvps.map((m,idx)=>(
+          <div key={idx} className="p-4 bg-white rounded shadow">
+            <div className="flex items-center gap-3">
+              <img src={m.avatar} className="h-12 w-12 object-cover rounded" />
+              <div>
+                <div className="font-semibold">{m.name}</div>
+                <div className="text-sm text-gray-600">{m.team} • {m.role}</div>
+              </div>
+            </div>
+            <div className="mt-3 text-sm">KDA: <span className="font-medium">{m.kda}</span></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
